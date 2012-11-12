@@ -1,0 +1,6 @@
+{% load i18n %}
+{% load url from future %}
+<head>
+    <title>Polls</title>
+    <H1>{% trans "List of polls" %}</H2>
+</head>
