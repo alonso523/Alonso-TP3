@@ -3,7 +3,7 @@
 <title>Agregar contacto</title>
 <H1>Agregar contacto nuevo<H1>
 </head>
-<form method="POST" action='/contactos/'>
+<form method="POST" action='contactos/agregar'>
     {% csrf_token %}
     {{ formset.management_form }}
     {% for form in formset %}

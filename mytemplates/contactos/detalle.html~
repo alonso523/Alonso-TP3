@@ -1,13 +1,14 @@
-{% load url from future %}
-<h1>{{ poll.question }}</h1>
-
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-
-<form action="{% url 'polls:vote' poll.id %}" method="post">
-{% csrf_token %}
-{% for choice in poll.choice_set.all %}
-    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
-    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
-{% endfor %}
-<input type="submit" value="Vote" />
-</form>
+<html>
+<title>Detalles contacto</title>
+<body>
+<h1>La información del contacto es la siguiente:</h1>
+<h2>Nombre: {{contacto.nombre}}</h2>
+<h2>Primer Apellido: {{contacto.apellido1}}</h2>
+<h2>Segundo Apellido {{contacto.apellido2}}</h2>
+<h2>Edad: {{contacto.edad}}</h2>
+<h2>Teléfono: {{contacto.telefono}}</h2>
+<h2>Email: {{contacto.correo}}</h2>
+<h2>Dirección: {{contacto.direccion}}</h2>
+</body>
+<li><a href= (reverse("index"))> Volver </a>
+</html>
