@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-from contactos.views import index, agregar, detalle, editar
+from contactos.views import index, agregar, detalle, editar, eliminar, actualizar
 
 # Uncomment the next two lines to enable the admin:
 #from django.contrib import admin
@@ -21,5 +21,7 @@ urlpatterns = patterns('',
     url(r'^contactos/(?P<contacto_id>\d+)/$', detalle),
     url(r'^contactos/editar/(?P<contacto_id>\d+)/$', editar),
     url(r'^contactos/editar/$', editar),
+    url(r'^contactos/eliminar/(?P<contacto_id>\d+)/$', eliminar),
+    url(r'^contactos/actualizar/(?P<contacto_id>\d+)/$', actualizar),
     #url(r'^search/$', views.search),
 )

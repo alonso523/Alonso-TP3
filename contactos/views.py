@@ -37,16 +37,42 @@ def agregar(request):
     	return render_to_response('contactos/agregar.html', context, context_instance=RequestContext(request))
 
 #FUncion que permite editar la información del contacto, recibe el id del contacto a modificar
+#def editar(reques):
+	#cod=request.GET.get()
+#	ContactoFormSet = modelformset_factory(Contacto)
+#	if request.method == 'POST':
+#		formset = ContactoFormSet(request.POST, request.FILES,
+#			                queryset=Contacto.objects.filter(pk = contacto_id))
+#		if formset.is_valid():
+#			formset.save()
+#			return HttpResponseRedirect('/contactos/')
+#	else:
+#		formset = ContactoFormSet(queryset=Contacto.objects.filter				(pk = contacto_id))
+#		context = {'formset': formset}
+ #   		return render_to_response('contactos/editar.html', context, context_instance=RequestContext(request))
+
+#
 def editar(request, contacto_id):
-	ContactoFormSet = modelformset_factory(Contacto)
-	if request.method == 'POST':
-		formset = ContactoFormSet(request.POST, request.FILES,
-		                        queryset=Contacto.objects.filter(pk = contacto_id))
-        	if formset.is_valid():
-			formset.save()
-			return HttpResponseRedirect('/contactos/')
-	else:
-        	formset = ContactoFormSet(queryset=Contacto.objects.filter				(pk = contacto_id))
-		context = {'formset': formset}
-    		return render_to_response('contactos/editar.html', context, context_instance=RequestContext(request))
+	contacto = Contacto.objects.get(id = contacto_id)
+	context = {'action': 'actualizar/' + contacto_id, 'button': 'Actualizar', 'nombre': contacto.nombre, 'apellido1': contacto.apellido1, 'apellido2': contacto.apellido2, 'edad':contacto.edad, 'telefono': contacto.telefono, 'correo': contacto.correo, 'direccion':contacto.direccion} 
+	return render_to_response('contactos/editar.html', context, context_instance=RequestContext(request))
 	
+
+#permite modificar los registros de los contactos
+def actualizar(request, contacto_id):
+	contacto = Contacto.objects.get(id = contacto_id)
+	contacto.nombre = request.POST["nombre"]
+	contacto.apellido1 = request.POST["apellido1"]
+	contacto.apellido2 = request.POST["apellido2"]
+	contacto.edad = request.POST["edad"]
+	contacto.telefono = request.POST["telefono"]
+	contacto.correo = request.POST["correo"]
+	contacto.direccion = request.POST["direccion"]
+	contacto.save()
+	return HttpResponseRedirect('/contactos/')
+
+#Funcion que permite eliminar contactos
+def eliminar(request, contacto_id):
+	Contacto.objects.get(id = contacto_id).delete()
+	return HttpResponseRedirect('/contactos/')
+

@@ -11,7 +11,7 @@
 </form>
     <ul>
     {% for contacto in lista_contactos %}
-        <li><a href= "{{contacto.id}}">{{ contacto.apellido1 }} {{ contacto.apellido2 }}  {{ contacto.nombre}}</a>    <a href= "editar/{{contacto.id}}">editar</a></li>
+        <li><a href= "{{contacto.id}}">{{ contacto.apellido1 }} {{ contacto.apellido2 }}  {{ contacto.nombre}}</a> <a href= "editar/{{contacto.id}}">editar</a>   <a href= "eliminar/{{contacto.id}}">eliminar</a></li>
     {% endfor %}
     </ul>
 {% else %}
@@ -20,5 +20,4 @@
 
 <body>
 <a href="agregar">Agregar contacto </a>
-<a href="editar">editar contacto </a>
 </body>
