@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import ModelForm
 
 # Create your models here.
 # Modelo contacto, el cual tiene todos los datos de los contactos
@@ -30,4 +31,9 @@ class Contacto(models.Model):
 
 	def __unicode__(self):
 		return self.correo
+
+#Clase que permite generar el form para agregar un contacto
+class ContactoForm(ModelForm):
+	class Meta: 
+		model = Contacto
 

@@ -1,0 +1,23 @@
+<html>
+<head>
+<title>Agregar contacto</title>
+<H1>Agregar contacto nuevo<H1>
+</head>
+<form method="POST" action='/contactos/'>
+    {% csrf_token %}
+    {{ formset.management_form }}
+    {% for form in formset %}
+        {{ form.id }}
+        <ul>
+            <li><p><font size=5>Nombre {{ form.nombre }}</font><p></li>
+            <li><p><font size=5>Primer apellido {{ form.apellido1 }}</font><p></li>
+            <li><p><font size=5>Segundo apellido {{ form.apellido2 }}</font><p></li>
+            <li><p><font size=5>Edad {{ form.edad }}</font><p></li>
+            <li><p><font size=5>Telefono {{ form.telefono }}</font><p></li>
+            <li><p><font size=5>Correo {{ form.correo }}</font><p></li>
+            <li><p><font size=5>Direccion {{ form.direccion }}</font><p></li>
+        </ul>
+	<input type= "submit"  value="Enviar">
+    {% endfor %}
+</form>
+</html>

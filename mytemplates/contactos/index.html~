@@ -1,6 +1,23 @@
 {% load i18n %}
 {% load url from future %}
+{% if lista_contactos %}
 <head>
-    <title>Polls</title>
-    <H1>{% trans "List of polls" %}</H2>
+    <title>Lista de contactos</title>
+    <H1>Lista de conctactos</H1>
 </head>
+<form action="/search/" method="get">
+<input type="text" name="q">
+<input type="submit" value="Search">
+</form>
+    <ul>
+    {% for contacto in lista_contactos %}
+        <li><a href= "detalle\{{contacto.id}}">{{ contacto.apellido1 }} {{ contacto.apellido2 }}  {{ contacto.nombre}}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No contactos registrados.</p>
+{% endif %}
+
+<body>
+<a href="agregar">Agregar contacto </a>
+</body>
