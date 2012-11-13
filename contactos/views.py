@@ -76,3 +76,14 @@ def eliminar(request, contacto_id):
 	Contacto.objects.get(id = contacto_id).delete()
 	return HttpResponseRedirect('/contactos/')
 
+#Funcion que permite buscar datos ingresados por el usuario de los contactos registrados
+def buscar(request):
+	contacto = Contacto.objects.all()
+
+	if (Contacto.objects.filter(nombre=request.GET)) or (Contacto.objects.filter(apellido1=request.GET)) or (Contacto.objects.filter(apellido2=request.GET)) or (Contacto.objects.filter(edad=request.request.GET)) or (Contacto.objects.filter(telefono=request.request.GET)) or (Contacto.objects.filter(correo=request.GET)) or (Contacto.objects.filter(direccion=request.GET)):
+		contacto1 = get_object_or_404(Contacto, pk=contacto.get(id))
+		return render(request, 'contactos/detalle.html', {'contacto1': contacto1})
+	else:
+		return HttpResponseRedirect('/contactos/error.html')
+
+

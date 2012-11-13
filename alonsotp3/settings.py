@@ -70,6 +70,18 @@ STATICFILES_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
 )
 
+AUTHENTICATION_BACKENDS = (
+	'social_auth.backends.twitter.TwitterBackend',
+)
+
+LOGIN_URL = ()
+
+LOGIN_REDIRECT_URL = ()
+
+LOGIN_ERROR_URL = ()
+
+SOCIAL_AUTH_USERNAME_FIXER = ()
+
 # List of finder classes that know how to find static files in
 # various locations.
 STATICFILES_FINDERS = (
@@ -117,6 +129,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+#    'social_auth',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:

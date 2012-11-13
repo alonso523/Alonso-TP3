@@ -5,7 +5,7 @@
     <title>Lista de contactos</title>
     <H1>Lista de conctactos</H1>
 </head>
-<form action="/search/" method="get">
+<form action="/contactos/buscar/" method="get">
 <input type="text" name="q">
 <input type="submit" value="Search">
 </form>
