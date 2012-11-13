@@ -1,13 +1,12 @@
 <html>
 <head>
-<title>Agregar contacto</title>
-<H1>Agregar contacto nuevo<H1>
+<title>Editar contacto</title>
+<H1>Editar contacto <H1>
 </head>
-<form method="POST" action='/contactos/agregar/'>
+<form method="POST" action='/contactos/editar/'>
     {% csrf_token %}
     {{ formset.management_form }}
     {% for form in formset %}
-        {{ form.id }}
         <ul>
             <li><p><font size=5>Nombre {{ form.nombre }}</font><p></li>
             <li><p><font size=5>Primer apellido {{ form.apellido1 }}</font><p></li>

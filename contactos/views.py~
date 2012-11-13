@@ -16,14 +16,11 @@ def index(request):
 	context   = {'lista_contactos': lista_contactos}
 	return render(request, 'contactos/index.html', context)
 
-#Detalle del contacto
+#Detalle del contacto, muestra los datos del usuario
 def detalle(request, contacto_id):
 	contacto = get_object_or_404(Contacto, pk=contacto_id)
-		return render(request, 'contactos/detalle.html', {'contacto': contacto})
+	return render(request, 'contactos/detalle.html', {'contacto': contacto})
 
-#Función que agrega un contacto a la lista de contactos
-#def agregar(request):
-#	return render(request, 'contactos/agregar.html')
 
 #Funcion que agrega un contacto
 def agregar(request):
@@ -38,4 +35,18 @@ def agregar(request):
         	formset = ContactoFormSet(queryset=Contacto.objects.filter(nombre__startswith='O'))
 		context = {'formset': formset}
     	return render_to_response('contactos/agregar.html', context, context_instance=RequestContext(request))
+
+#FUncion que permite editar la información del contacto
+def editar(request, contacto_id):
+	ContactoFormSet = modelformset_factory(Contacto)
+	if request.method == 'POST':
+		formset = ContactoFormSet(request.POST, request.FILES,
+		                        queryset=Contacto.objects.filter(pk = contacto_id))
+        	if formset.is_valid():
+			formset.save()
+			return HttpResponseRedirect('/contactos/')
+	else:
+        	formset = ContactoFormSet(queryset=Contacto.objects.filter				(pk = contacto_id))
+		context = {'formset': formset}
+    		return render_to_response('contactos/editar.html', context, context_instance=RequestContext(request))
 	
